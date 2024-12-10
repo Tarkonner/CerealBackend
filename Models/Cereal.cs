@@ -3,20 +3,20 @@
 public class Cereal
 {
     public int Id { get; init; }
-    public string Name { get; init; } = string.Empty;
-    public string Manufacturer { get; init; } = string.Empty;
-    public string Type { get; init; } = string.Empty;
-    public int Calories { get; init; }
-    public int Protein { get; init; }
-    public int Fat { get; init; }
-    public int Sodium { get; init; }
-    public float Fiber { get; init; }
-    public float Carbohydrates { get; init; }
-    public int Sugars { get; init; }
-    public int Potassium { get; init; }
-    public int Vitamins { get; init; }
-    public int Shelf { get; init; }
-    public float Weight { get; init; }
-    public float Cups { get; init; }
-    public string Rating { get; init; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
+    public string Manufacturer { get; set; } = string.Empty;
+    public string Type { get; set; } = string.Empty;
+    public int Calories { get; set; }
+    public int Protein { get; set; }
+    public int Fat { get; set; }
+    public int Sodium { get; set; }
+    public float Fiber { get; set; }
+    public float Carbohydrates { get; set; }
+    public int Sugars { get; set; }
+    public int Potassium { get; set; }
+    public int Vitamins { get; set; }
+    public int Shelf { get; set; }
+    public float Weight { get; set; }
+    public float Cups { get; set; }
+    public string Rating { get; set; } = string.Empty;
 }
