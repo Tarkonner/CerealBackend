@@ -11,5 +11,4 @@ public class ApplicationDBContext : DbContext
     }
     
     public DbSet<Cereal> Cereals { get; set; }
-    
 }

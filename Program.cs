@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Test.DataContext;
+using Test.Interfaces;
+using Test.Models;
+using Test.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +18,8 @@ builder.Services.AddDbContext<ApplicationDBContext>((serviceProvider, options) =
     var connectionString = configuration.GetConnectionString("MySqlConnection");
     options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 36)));
 });
+
+builder.Services.AddScoped<ICerealRepository, CerealRepositry>();
 
 var app = builder.Build();
 
