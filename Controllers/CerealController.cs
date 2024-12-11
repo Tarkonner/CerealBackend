@@ -1,4 +1,5 @@
-﻿using Test.DataContext;
+﻿using Microsoft.EntityFrameworkCore;
+using Test.DataContext;
 using Test.Dtos.Cereal;
 using Test.Mappers;
 
@@ -16,17 +17,17 @@ public class CerealController : ControllerBase
     }
     
     [HttpGet]
-    public IActionResult GetAllCereals()
+    public async Task<IActionResult> GetAllCereals()
     {
-        var cereals = _context.Cereals.ToList()
-            .Select(s => s.ToCerealDTO());
-        return Ok(cereals);
+        var cereals = await _context.Cereals.ToListAsync();
+        var collectedCereals = cereals.Select(s => s.ToCerealDTO());
+        return Ok(collectedCereals);
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetCerealById([FromRoute] int id)
+    public async Task<IActionResult> GetCerealById([FromRoute] int id)
     {
-        var cereal = _context.Cereals.Find(id);
+        var cereal = await _context.Cereals.FindAsync(id);
         
         if(cereal == null)
             return NotFound();
@@ -35,17 +36,17 @@ public class CerealController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateCereal([FromBody] CreateCerealDTO cereal)
+    public async Task<IActionResult> CreateCereal([FromBody] CreateCerealDTO cereal)
     {
         var cerealModel = cereal.ToCerealFromCreateDTO();
-        _context.Cereals.Add(cerealModel);
-        _context.SaveChanges();
+        await _context.Cereals.AddAsync(cerealModel);
+        await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(GetCerealById), new { id = cerealModel.Id }, cerealModel);
     }
     
     [HttpPut]
     [Route("{id}")]
-    public IActionResult Update([FromRoute] int id, [FromBody] UpdateCerealRequestDTO updatedDto)
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCerealRequestDTO updatedDto)
     {
         var cerealModel = _context.Cereals.FirstOrDefault(x => x.Id == id);
         if (cerealModel == null)
@@ -69,8 +70,24 @@ public class CerealController : ControllerBase
         cerealModel.Weight = updatedDto.Weight;
         cerealModel.Cups = updatedDto.Cups;
 
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         return Ok(cerealModel.ToCerealDTO());
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+    {
+        var cerealModel = _context.Cereals.FirstOrDefault(x => x.Id == id);
+        
+        if(cerealModel == null)
+            return NotFound();
+        
+        _context.Cereals.Remove(cerealModel);
+        
+        await _context.SaveChangesAsync();
+
+        return NoContent();
     }
 }
