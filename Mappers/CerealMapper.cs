@@ -1,4 +1,5 @@
-﻿using Test.Dtos.Cereal;
+﻿using Test.Dtos;
+using Test.Dtos.Cereal;
 using Test.Models;
 
 namespace Test.Mappers;
@@ -39,6 +40,18 @@ public static class CerealMapper
             Shelf = 0,
             Weight = 0,
             Cups = 0
+        };
+    }
+    
+    public static CerealPackageInfo ToCerealPackageinfo(this Cereal cerealModel)
+    {
+        return new CerealPackageInfo
+        {
+            Id = cerealModel.Id,
+            Name = cerealModel.Name,
+            Manufacturer = cerealModel.Manufacturer,
+            Type = cerealModel.Type,
+            Rating = cerealModel.Rating
         };
     }
 }

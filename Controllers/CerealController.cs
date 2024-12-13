@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Test.DataContext;
+using Test.Dtos;
 using Test.Dtos.Cereal;
 using Test.Interfaces;
 using Test.Mappers;
@@ -25,6 +26,24 @@ public class CerealController : ControllerBase
         var cereals = await _cerealRepo.GetAllAsync();
         var collectedCereals = cereals.Select(s => s.ToCerealDTO());
         return Ok(collectedCereals);
+    }
+    
+    [HttpGet("product_info")]
+    [ProducesResponseType(200, Type = typeof(ICollection<CerealPackageInfo>))]
+    public async Task<IActionResult> GetCerealsProductInfoAsync()
+    {
+        try
+        {
+            var cereals = await _cerealRepo.GetAllAsync();
+            var collectedPackageInfo = cereals.Select(c => c.ToCerealPackageinfo()).ToList();
+
+            return Ok(collectedPackageInfo);
+        }
+        catch (Exception e)
+        {
+            // Log the exception for debugging purposes (not shown here for simplicity)
+            return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while fetching cereals.");
+        }
     }
 
     [HttpGet("{id}")]
