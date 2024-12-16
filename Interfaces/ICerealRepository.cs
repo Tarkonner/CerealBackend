@@ -1,4 +1,5 @@
-﻿using Test.Dtos.Cereal;
+﻿using Test.Dtos;
+using Test.Dtos.Cereal;
 using Test.Models;
 
 namespace Test.Interfaces;
@@ -10,4 +11,7 @@ public interface ICerealRepository
     public Task<Cereal> CreateAsync(Cereal cereal);
     public Task<Cereal?> UpdateAsync(int id, UpdateCerealRequestDTO cerealDto);
     public Task<Cereal?> DeleteAsync(int id);
+    
+    //Image
+    public Task<CerealImage?> GetImageByIdAsync(int id);
 }

@@ -18,6 +18,15 @@ builder.Services.AddDbContext<ApplicationDBContext>((serviceProvider, options) =
     var connectionString = configuration.GetConnectionString("MySqlConnection");
     options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 36)));
 });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 
 builder.Services.AddScoped<ICerealRepository, CerealRepositry>();
 
@@ -30,8 +39,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(); // Serves the Swagger UI for visual feedback
 }
 
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
-
 app.MapControllers();
 
 await app.RunAsync();

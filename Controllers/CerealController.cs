@@ -88,4 +88,13 @@ public class CerealController : ControllerBase
 
         return NoContent();
     }
+    
+    [HttpGet("image")]
+    [Route("id")]
+    public async Task<IActionResult> GetCerealImage([FromRoute] int id)
+    {
+        var cerealImage = await _cerealRepo.GetImageByIdAsync(id);
+        
+        return Ok();
+    }
 }

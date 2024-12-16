@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Test.Dtos;
 using Test.Models;
 
 namespace Test.DataContext;
@@ -11,4 +12,5 @@ public class ApplicationDBContext : DbContext
     }
     
     public DbSet<Cereal> Cereals { get; set; }
+    public DbSet<CerealImage> CerealImages { get; set; }
 }
