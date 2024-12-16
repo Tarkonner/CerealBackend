@@ -7,6 +7,8 @@ using Test.Mappers;
 
 namespace Test.Controllers;
 using Microsoft.AspNetCore.Mvc;
+
+
 [Route("api/[controller]")]
 [ApiController]
 public class CerealController : ControllerBase
@@ -87,14 +89,5 @@ public class CerealController : ControllerBase
         
 
         return NoContent();
-    }
-    
-    [HttpGet("image")]
-    [Route("id")]
-    public async Task<IActionResult> GetCerealImage([FromRoute] int id)
-    {
-        var cerealImage = await _cerealRepo.GetImageByIdAsync(id);
-        
-        return Ok();
     }
 }

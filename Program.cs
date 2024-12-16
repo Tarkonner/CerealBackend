@@ -29,6 +29,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddScoped<ICerealRepository, CerealRepositry>();
+builder.Services.AddScoped<IImageRepository, CerealImageRepositry>();
 
 var app = builder.Build();
 

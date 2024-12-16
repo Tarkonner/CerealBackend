@@ -11,7 +11,4 @@ public interface ICerealRepository
     public Task<Cereal> CreateAsync(Cereal cereal);
     public Task<Cereal?> UpdateAsync(int id, UpdateCerealRequestDTO cerealDto);
     public Task<Cereal?> DeleteAsync(int id);
-    
-    //Image
-    public Task<CerealImage?> GetImageByIdAsync(int id);
 }

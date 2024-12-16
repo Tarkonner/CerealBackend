@@ -12,5 +12,5 @@ public class ApplicationDBContext : DbContext
     }
     
     public DbSet<Cereal> Cereals { get; set; }
-    public DbSet<CerealImage> CerealImages { get; set; }
+    public DbSet<Image> Images { get; set; }
 }
