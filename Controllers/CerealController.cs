@@ -26,8 +26,8 @@ public class CerealController : ControllerBase
     public async Task<IActionResult> GetAllCereals()
     {
         var cereals = await _cerealRepo.GetAllAsync();
-        var collectedCereals = cereals.Select(s => s.ToCerealDTO());
-        return Ok(collectedCereals);
+        var sortedCereal = cereals.OrderBy(c => c.Rating);
+        return Ok(sortedCereal);
     }
     
     [HttpGet("product_info")]
@@ -38,8 +38,9 @@ public class CerealController : ControllerBase
         {
             var cereals = await _cerealRepo.GetAllAsync();
             var collectedPackageInfo = cereals.Select(c => c.ToCerealPackageinfo()).ToList();
-
-            return Ok(collectedPackageInfo);
+            var sortedCereal = collectedPackageInfo.OrderBy(c => c.Rating);
+            
+            return Ok(sortedCereal);
         }
         catch (Exception e)
         {
