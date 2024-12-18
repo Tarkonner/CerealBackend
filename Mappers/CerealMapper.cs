@@ -12,8 +12,8 @@ public static class CerealMapper
         {
             Id = cere.Id,
             Name = cere.Name,
-            Manufacturer = cere.Manufacturer,
-            Type = cere.Type,
+            Manufacturer = InfoConvertor.ToManufacturersName(cere.Manufacturer),
+            Type = InfoConvertor.ToProductType(cere.Type),
             Rating = cere.Rating,
         };
     }
@@ -49,8 +49,8 @@ public static class CerealMapper
         {
             Id = cerealModel.Id,
             Name = cerealModel.Name,
-            Manufacturer = cerealModel.Manufacturer,
-            Type = cerealModel.Type,
+            Manufacturer = InfoConvertor.ToManufacturersName(cerealModel.Manufacturer),
+            Type = InfoConvertor.ToProductType(cerealModel.Type),
             Rating = cerealModel.Rating
         };
     }

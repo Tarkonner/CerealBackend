@@ -18,7 +18,6 @@ public class ImageController : ControllerBase
     [Route("{cerealId:int}")]
     public async Task<IActionResult> GetImageById([FromRoute] int cerealId)
     {
-        Console.WriteLine(cerealId);
         try
         {
             var imagePath = await _imageRepository.GetImageByIdAsync(cerealId);
