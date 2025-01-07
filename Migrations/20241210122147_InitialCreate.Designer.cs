@@ -24,7 +24,7 @@ namespace Test.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("Test.Models.Cereal", b =>
+            modelBuilder.Entity("CerealBackend.Models.Cereal", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
