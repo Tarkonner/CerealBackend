@@ -26,6 +26,14 @@ public class CerealController : ControllerBase
     public async Task<IActionResult> GetAllCereals()
     {
         var cereals = await _cerealRepo.GetAllAsync();
+        
+        //Show info for manufactur
+        foreach (var targetCereal in cereals)
+        {
+            targetCereal.Manufacturer = InfoConvertor.ToManufacturersName(targetCereal.Manufacturer);
+            targetCereal.Type = InfoConvertor.ToProductType(targetCereal.Type);
+        }
+        
         var sortedCereal = cereals.OrderBy(c => c.Rating);
         return Ok(sortedCereal);
     }
