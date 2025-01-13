@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test.csproj", "{8AAA0F43-168F-4B2C-8B7D-3DE240BAC14B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CerealBackend", "CerealBackend.csproj", "{8AAA0F43-168F-4B2C-8B7D-3DE240BAC14B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

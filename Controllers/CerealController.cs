@@ -27,6 +27,14 @@ public class CerealController : ControllerBase
     {
         // Retrieves all cereals and sorts them by their rating
         var cereals = await _cerealRepo.GetAllAsync();
+        
+        //Show info for manufactur
+        foreach (var targetCereal in cereals)
+        {
+            targetCereal.Manufacturer = InfoConvertor.ToManufacturersName(targetCereal.Manufacturer);
+            targetCereal.Type = InfoConvertor.ToProductType(targetCereal.Type);
+        }
+        
         var sortedCereal = cereals.OrderBy(c => c.Rating);
         return Ok(sortedCereal); // Returns the sorted list of cereals
     }
