@@ -18,16 +18,19 @@ builder.Services.AddDbContext<ApplicationDBContext>((serviceProvider, options) =
     var connectionString = configuration.GetConnectionString("MySqlConnection");
     options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 36)));
 });
+
+// Configure CORS (Cross-Origin Resource Sharing)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
     {
-        builder.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
+        builder.AllowAnyOrigin()    // Allows requests from any origin
+            .AllowAnyMethod()       // Allows any HTTP method (GET, POST, etc.)
+            .AllowAnyHeader();      // Allows any headers in the request
     });
 });
 
+// Add application-specific components (Dependency Injection)
 builder.Services.AddScoped<ICerealRepository, CerealRepositry>();
 builder.Services.AddScoped<IImageRepository, CerealImageRepositry>();
 
@@ -40,8 +43,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(); // Serves the Swagger UI for visual feedback
 }
 
-app.UseCors("AllowAll");
-app.UseHttpsRedirection();
-app.MapControllers();
+app.UseCors("AllowAll");    // Applies the configured CORS policy
+app.UseHttpsRedirection();  // Enforces HTTPS for all requests
+app.MapControllers();       // Maps controller endpoints to the request pipeline
 
 await app.RunAsync();
