@@ -54,4 +54,23 @@ public static class CerealMapper
             Rating = cerealModel.Rating
         };
     }
+
+    public static CerealNutritionLabel ToNutritionLabel(this Cereal cerealModel)
+    {
+        return new CerealNutritionLabel
+        {
+            //Food info
+            Calories = 0,
+            Protein = 0,
+            Fat = 0,
+            Sodium = 0,
+            Fiber = 0,
+            Carbohydrates = 0,
+            Sugars = 0,
+            Potassium = 0,
+            Vitamins = 0,
+            Weight = 0,
+            Cups = 0
+        };
+    }
 }

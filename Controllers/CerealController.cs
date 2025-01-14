@@ -38,6 +38,20 @@ public class CerealController : ControllerBase
         var sortedCereal = cereals.OrderBy(c => c.Rating);
         return Ok(sortedCereal); // Returns the sorted list of cereals
     }
+
+    [HttpGet("{id}/NutritionLabal")]
+    public async Task<IActionResult> GetNutritionLabel(int id)
+    {
+        var cereal = await _cerealRepo.GetByIdAsync(id);
+        
+        if (cereal == null)
+            return NotFound(); // Returns 404 if the cereal is not found
+        
+        //Nutrition label
+        CerealNutritionLabel nutritionLabel = cereal.ToNutritionLabel();
+        
+        return Ok(nutritionLabel); // Returns the cereal data
+    }
     
     [HttpGet("product_info")]
     [ProducesResponseType(200, Type = typeof(ICollection<CerealPackageInfo>))] // Specifies the expected response type and status code

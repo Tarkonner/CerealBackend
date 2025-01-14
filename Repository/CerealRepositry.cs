@@ -21,7 +21,7 @@ public class CerealRepositry : ICerealRepository
 
     public async Task<Cereal?> GetByIdAsync(int id)
     {
-        var cerealModel = await _context.Cereals.FindAsync();
+        var cerealModel = await _context.Cereals.FindAsync(id);
         return cerealModel ?? null;
     }
 
