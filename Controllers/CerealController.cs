@@ -39,8 +39,8 @@ public class CerealController : ControllerBase
         return Ok(sortedCereal); // Returns the sorted list of cereals
     }
 
-    [HttpGet("{id}/NutritionLabal")]
-    public async Task<IActionResult> GetNutritionLabel(int id)
+    [HttpGet("NutritionLabel/{id}")]
+    public async Task<IActionResult> GetNutritionLabel([FromRoute] int id)
     {
         var cereal = await _cerealRepo.GetByIdAsync(id);
         
