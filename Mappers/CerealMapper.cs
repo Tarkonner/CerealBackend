@@ -60,17 +60,17 @@ public static class CerealMapper
         return new CerealNutritionLabel
         {
             //Food info
-            Calories = 0,
-            Protein = 0,
-            Fat = 0,
-            Sodium = 0,
-            Fiber = 0,
-            Carbohydrates = 0,
-            Sugars = 0,
-            Potassium = 0,
-            Vitamins = 0,
-            Weight = 0,
-            Cups = 0
+            Calories = cerealModel.Calories,
+            Protein = cerealModel.Protein,
+            Fat = cerealModel.Fat,
+            Sodium = cerealModel.Sodium,
+            Fiber = cerealModel.Fiber,
+            Carbohydrates = cerealModel.Carbohydrates,
+            Sugars = cerealModel.Sugars,
+            Potassium = cerealModel.Potassium,
+            Vitamins = cerealModel.Vitamins,
+            Weight = cerealModel.Weight,
+            Cups = cerealModel.Cups
         };
     }
 }
